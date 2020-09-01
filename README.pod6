@@ -1,0 +1,41 @@
+=begin pod
+
+=TITLE Raku Language Definition for Highlight.js library
+
+This is the language definition fileset to describe L<Raku|https://raku.org> for C<highlight.js>.
+
+It is composed of four language definition files, one for the main language, and one each
+for the braids, namely C<Pod>, C<Quoting>, and C<Regex>.
+
+=head1 Packaging
+
+Simply include the C<highlight.js> script package in your webpage or Node app, load up this module, and apply it to C<hljs>.
+
+If you're not using a build system and just want to embed this in your webpage:
+
+    <script src="https://cdn.jsdelivr.net/npm/highlightjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/highlightjs-raku"></script>
+    <script>
+      hljs.registerLanguage("raku", window.hljsDefineVue);
+      hljs.initHighlightingOnLoad();
+    </script>
+
+If you're using webpack / rollup / browserify / node:
+
+    var hljs = require("highlightjs");
+    var hljsDefineVue = require("highlightjs-raku");
+
+    hljsDefineVue(hljs);
+    hljs.initHighlightingOnLoad();
+
+=head1 LICENSE
+
+This software is provided under Artistic 2.0, the same license as L<Raku license|https://raku.org/LICENSE>
+
+=head1 Credits
+
+The language definition fileset was initiated by Richard Hainsworth, aka finanalyst.
+
+Other contributors:
+
+=end pod
