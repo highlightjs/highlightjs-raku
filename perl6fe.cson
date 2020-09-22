@@ -693,7 +693,7 @@
     (?:
       (m|rx|s|S)
       (
-        (?:
+        (?:login/index.php
           (?<!:P5) # < This can maybe be removed because we
           \\s*:\\w+
           (?!\\s*:P5) # < include p5_regex above it
