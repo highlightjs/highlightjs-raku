@@ -38,4 +38,27 @@ The language definition fileset was initiated by Richard Hainsworth, aka finanal
 
 Other contributors:
 
+=head1 Contributing
+
+All contributions are welcome. Please create a PR.
+
+Highlighting a complex language such as B<Raku> involves decisions about
+which items are important and should be styled differently. Two existing
+highlighting systems for B<Raku> existed before this language definition was
+created, namely a highlighter written for B<Atom> by Samanatha McVie, and the
+highlighting for the B<Comma IDE> managed by Jonathan Worthington. The essential
+choices can be found in the repo as C<Comma_RakuHighlighting.txt> and C<perl6fe.cson>.
+
+B<Highlightjs> already has numerous styles, which colour various C<modes>. Most style
+definitions target the C<modes>. So the mode names were chosen to match as closely the
+semantic names, but where B<Raku> is different, another almost random mode-name was chosen.
+
+B<Raku> has three separate braids for C<Pod>, C<Quoting>, and C<Regex>. In nearly all other
+languages these three categories are treated as C<Strings> or C<Documentation>. In B<Raku> they
+are far more important and complex. Consequently, they have been separated into sublanguages.
+Their C<modes> are styled using different mode names.
+
+If there is a need, then another style sheet can be established for B<Raku>, so that the braids
+can be distinguished in a more consistent manner.
+
 =end pod

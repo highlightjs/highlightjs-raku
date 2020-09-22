@@ -5,6 +5,7 @@
 [Packaging](#packaging)
 [LICENSE](#license)
 [Credits](#credits)
+[Contributing](#contributing)
 
 ----
 This is the language definition fileset to describe [Raku](https://raku.org) for `highlight.js`.
@@ -41,6 +42,17 @@ The language definition fileset was initiated by Richard Hainsworth, aka finanal
 
 Other contributors:
 
+# Contributing
+All contributions are welcome. Please create a PR.
+
+Highlighting a complex language such as **Raku** involves decisions about which items are important and should be styled differently. Two existing highlighting systems for **Raku** existed before this language definition was created, namely a highlighter written for **Atom** by Samanatha McVie, and the highlighting for the **Comma IDE** managed by Jonathan Worthington. The essential choices can be found in the repo as `Comma_RakuHighlighting.txt` and `perl6fe.cson`.
+
+**Highlightjs** already has numerous styles, which colour various `modes`. Most style definitions target the `modes`. So the mode names were chosen to match as closely the semantic names, but where **Raku** is different, another almost random mode-name was chosen.
+
+**Raku** has three separate braids for `Pod`, `Quoting`, and `Regex`. In nearly all other languages these three categories are treated as `Strings` or `Documentation`. In **Raku** they are far more important and complex. Consequently, they have been separated into sublanguages. Their `modes` are styled using different mode names.
+
+If there is a need, then another style sheet can be established for **Raku**, so that the braids can be distinguished in a more consistent manner.
+
 
 
 
@@ -49,4 +61,4 @@ Other contributors:
 
 
 ----
-Rendered from extra/raku/README at 2020-09-01T11:17:23Z
+Rendered from extra/raku/README at 2020-09-22T20:22:31Z

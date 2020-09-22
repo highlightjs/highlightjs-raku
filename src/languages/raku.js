@@ -3,79 +3,100 @@ Language: Raku
 Author: Richard Hainsworth <rnhainsworth@gmail.com>
 Website: https://www.raku.org
 Category: common
-Credit: Samantha McVei in atom-perl6fe
 */
 export default function(hljs) {
+// highlight group -> css_class as given in CSS class reference
+// Not all names may match semantically
+//1: Operators -> literal
+//2: Keywords -> keyword
+//3: Comments -> comment
+//4: String Literal -> string
+//5: Numeric Literal -> number
+//6: Callable -> function
+//7: Variables -> built-in
+//8: Types & terms -> type
+//9: Regex => sublanguage
+//10: POD => sublanguage
+//11: quoting => sublanguage
+  var OPERATORS = {
+    begin: '',
+    classname: 'literal'
+  };
   var RAKU_KEYWORDS = {
     $pattern: /[\w.]+/,
     keyword: // each string below is differentiated in atom-perl6fe
     'use require no need'
-    + 'if else elsif unless with orwith without'
-    + 'let my our state temp has constant'
-    + 'for loop repeat while until gather given'
-    + 'take do when next last redo return return-rw contend maybe defer default exit quietly continue break goto leave supply async lift await start react whenever parse'
-    + 'is does as but trusts of returns handles where augment supersede'
-    + 'BEGIN CHECK INIT START FIRST ENTER LEAVE KEEP UNDO NEXT LAST PRE POST END CATCH CONTROL TEMP QUIT'
-    + 'prec irs ofs ors export raw deep binary unary reparsed rw parsed cached readonly defequiv will ref copy inline tighter looser equiv assoc required pure'
-    + 'fatal internals MONKEY-TYPING MONKEY-SEE-NO-EVAL MONKEY-BRAINS MONKEY-GUTS MONKEY-BUSINESS MONKEY-TRAP MONKEY-SHINE MONKEY-WRENCH MONKEY-BARS nqp QAST strict trace worries invocant parameters experimental cur soft variables attributes v6 v6.* v6.c v6.d lib Test NativeCall'
+    + 'if|0 else|0 elsif|5 unless with|10 orwith|10 without|10'
+    + 'let|0 my|5 our|5 state|5 temp|7 has|10 constant'
+    + 'for|0 loop|0 repeat|0 while|0 until|0 gather|10 given|5'
+    + 'take|10 do|0 when|5 next|0 last|0 redo|0 return|0 return-rw contend maybe defer default exit quietly continue break goto leave supply async lift await start react whenever parse'
+    + 'make|10 made|10'
+    + 'is|10 does|10 as but|10 trusts|10 of returns handles where|10 augment supersede'
+    + 'BEGIN CHECK|10 INIT START FIRST|10 ENTER|10 LEAVE|10 KEEP UNDO NEXT LAST PRE POST END CATCH CONTROL TEMP QUIT'
+    + 'prec|10 irs ofs ors export raw deep binary unary reparsed rw parsed cached readonly defequiv will ref copy inline tighter looser equiv assoc required pure'
+    + 'fatal internals MONKEY-TYPING|10 MONKEY-SEE-NO-EVAL|10 MONKEY-BRAINS|10 MONKEY-GUTS|10 MONKEY-BUSINESS|10 MONKEY-TRAP|10 MONKEY-SHINE|10 MONKEY-WRENCH|10 MONKEY-BARS|10 nqp|10 QAST|10 strict trace worries|10 invocant parameters experimental cur soft variables attributes v6|10 v6.*|10 v6.c|10 v6.d|10 v6.e|10 lib Test NativeCall|10'
     + 'Backtrace Exception Failure X'
-    + 'AST Any Array Associative Attribute Bag BagHash Baggy Blob Block Bool Callable Capture Channel Code Complex Cool CurrentThreadScheduler Cursor Date DateTime Dateish Duration Enum FatRat Grammar Hash IO Instant Iterable Iterator Junction Label List Lock Macro Map Match Metamodel Method Mix MixHash Mixy Mu Nil Numeric ObjAt Pair Parameter Pod Positional PositionalBindFailover Proc Promise Proxy QuantHash Range Rat Rational Real Regex Routine Scheduler Seq Set SetHash Setty Signature Slip Stash Str str Stringy Sub Submethod Supply Tap Temporal Thread ThreadPoolScheduler Variable Version Whatever WhateverCode bool size_t Int int int1 int2 int4 int8 int16 int32 int64 Rat rat rat1 rat2 rat4 rat8 rat16 rat32 rat64 Buf buf buf1 buf2 buf4 buf8 buf16 buf32 buf64 UInt uint uint1 uint2 uint4 uint8 uint16 uint32 uint64 utf8 utf16 utf32 Num num num32 num64 IntStr NumStr RatStr ComplexStr CArray Pointer long longlong '
+    + 'AST|10 Any Array Associative|10 Attribute Bag|10 BagHash|10 Baggy|10 Blob Block Bool Callable Capture Channel|10 Code Complex Cool CurrentThreadScheduler|10 Cursor Date DateTime Dateish|10 Duration Enum FatRat|10 Grammar|10 Hash IO Instant Iterable Iterator Junction|10 Label List Lock Macro Map Match Metamodel Method Mix|10 MixHash|10 Mixy|10 Mu|10 Numeric ObjAt Pair Parameter Pod Positional PositionalBindFailover Proc Promise Proxy|10 QuantHash|10 Range Rat|10 Rational Real Regex Routine Scheduler Seq Set SetHash|10 Setty Signature Slip Stash Str str Stringy Sub Submethod Supply Tap Temporal Thread ThreadPoolScheduler Variable Version Whatever|10 WhateverCode|10 bool size_t Int int int1 int2 int4 int8 int16 int32 int64 Rat|10 rat|10 rat1|10 rat2|10 rat4|10 rat8|10 rat16|10 rat32|10 rat64|10 Buf buf buf1 buf2 buf4 buf8 buf16 buf32 buf64 UInt uint uint1 uint2 uint4 uint8 uint16 uint32 uint64 utf8 utf16 utf32 Num num num32 num64 IntStr NumStr RatStr ComplexStr CArray Pointer long longlong '
     + 'Order More Less Same'
-    + 'div mod gcd lcm x xx temp let but cmp leg eq ne gt ge lt le before after eqv min max ff fff not so Z and andthen or orelse'
-    ;
-  }
+    ,
+    // the following keywords are operators, which are to be styled as literals
+    literal: 'div mod gcd lcm x xx temp let but cmp leg eq ne gt ge lt le before after eqv min max ff fff not so Z and andthen or orelse'
+    ,
+    // the following keywords are RHS literals, so counting them as Number literals
+    number: 'NaN Inf True False Nil Empty'
+  };
+  var CALLABLES = {
+    begin: '',
+    classname: 'function',
+    contains: [ RAKU_KEYWORDS, OPERATORS, ]
+  };
+  var VARIABLES = {
+    begin: '',
+    classname: 'built-in'
+  };
+  var TYPES = {
+    begin: '',
+    classname: 'type'
+  };
+  var POD = {
+    begin: '^\\s*=begin pod',
+    end: '^\\s*=end pod$',
+    variants: [
+      begin: '^\\s*=COMMENT',
+      begin: '^\\s#\\||#='
+    ]
+    subLanguage: 'rakudoc',
+  };
+  var QUOTING = {
+    begin: '',
+    subLanguage: 'rakuquoting'
+  };
+  var RAKUREGEX = {
+    begin: '',
+    end: '',
+    subLanguage: 'rakuregex'
+  };
   var PERL_DEFAULT_CONTAINS = [
-    VAR,
-    { // regexp container
-      begin: '(\\/\\/|' + hljs.RE_STARTERS_RE + '|\\b(split|return|print|reverse|grep)\\b)\\s*',
-      keywords: 'split return print reverse grep',
-      relevance: 0,
-      contains: [
-        {
-          className: 'rakuregex',
-//          begin: '(s|tr|y)/(\\\\.|[^/])*/(\\\\.|[^/])*/[a-z]*',
-//          relevance: 10
-        },
-        {
-          className: 'rakuregex',
-//          begin: '(m|qr)?/', end: '/[a-z]*',
-//          contains: [hljs.BACKSLASH_ESCAPE],
-//          relevance: 0 // allows empty "//" which is a common comment delimiter in other languages
-        }
-      ]
-    },
-    {
-      begin: "^=begin pod",
-      end: "^=end pod$",
-      subLanguage: 'rakudoc',
-      contains: [
-        {
-//            begin: "^@@.*",
-//            end: "$",
-//            className: "comment"
-        }
-      ]
-    }
-    {
-//      begin: "^__DATA__$",
-//      end: "^__END__$",
-      subLanguage: 'rakuquoting',
-      contains: [
-        {
-//            begin: "^@@.*",
-//            end: "$",
-//            className: "comment"
-        }
-      ]
-    }
-  ],
-
-  SUBST.contains = RAKU_DEFAULT_CONTAINS;
-  METHOD.contains = RAKU_DEFAULT_CONTAINS;
+    OPERATORS,
+    CALLABLES,
+    VARIABLES,
+    TYPES,
+    RAKUPOD,
+    QUOTING,
+    RAKUREGEX,
+    STRING,
+    hljs.HASH_COMMENT_MODE,
+    hljs.NUMBER_MODE,
+    hljs.B_NUMBER_MODE
+  ];
+  // contains sections now so as to catch objects declared later
+  CALLABLES.contains = PERL_DEFAULT_CONTAINS;
+  TYPES.contains = PERL_DEFAULT_CONTAINS;
 
   return {
     name: 'Raku',
-    aliases: ['raku','Perl 6', 'p6', 'pm6', 'rakumod'],
+    aliases: ['raku','Perl6', 'p6', 'pm6', 'rakumod'],
+    case_insensistive: false,
     keywords: RAKU_KEYWORDS,
     contains: RAKU_DEFAULT_CONTAINS
   };
