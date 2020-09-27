@@ -124,6 +124,7 @@ export default function(hljs) {
     name: 'Raku',
     aliases: ['raku','Perl6', 'p6', 'pm6', 'rakumod'],
     case_insensistive: false,
+    disableAutodetect: true,
     keywords: RAKU_KEYWORDS,
     contains: RAKU_DEFAULT_CONTAINS
   };
