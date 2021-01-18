@@ -1,0 +1,39 @@
+{
+  "name": "highlightjs-raku",
+  "version": "0.0.1",
+  "description": "Raku language definition for Highlight.js",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/highlightjs/highlightjs-raku.git"
+  },
+  "keywords": [
+    "raku",
+    "rakudoc",
+    "pod6",
+    "hljs",
+    "highlightjs"
+  ],
+  "author": "Richard Hainsworth <rnhainsworth@gmail.com>",
+  "contributors": [
+    {
+      "name": "Alexandr Zahatski",
+      "email": "zag@cpan.org",
+      "url": "https://github.com/zag"
+    }
+  ],
+  "license": "Artistic-2.0",
+  "bugs": {
+    "url": "https://github.com/highlightjs/highlightjs-raku/issues"
+  },
+  "homepage": "https://github.com/highlightjs/highlightjs-raku#readme",
+  "devDependencies": {
+    "highlight.js": "^10.5.0"
+  }
+}

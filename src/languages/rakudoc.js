@@ -5,6 +5,7 @@ Author: Richard Hainsworth <rnhainsworth@gmail.com>
 Website: https://www.raku.org
 Category: documentation
 */
+var module = module ? module : {}; // shim for browser use
 export default function(hljs) {
   var RAKUDOC_KEYWORDS = {
     $pattern: /[\w.]+/,
