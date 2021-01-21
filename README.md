@@ -17,7 +17,7 @@ Simply include the `highlight.js` script package in your webpage or Node app, lo
 
 If you're not using a build system and just want to embed this in your webpage:
 
-```
+```html
 <script src="https://cdn.jsdelivr.net/npm/highlightjs"></script>
 <script src="https://cdn.jsdelivr.net/npm/highlightjs-raku"></script>
 <script>
@@ -27,7 +27,7 @@ If you're not using a build system and just want to embed this in your webpage:
 ```
 If you're using webpack / rollup / browserify / node:
 
-```
+```js
 var hljs = require("highlightjs");
 var hljsDefineVue = require("highlightjs-raku");
 
