@@ -21,7 +21,7 @@ If you're not using a build system and just want to embed this in your webpage:
 <script src="https://cdn.jsdelivr.net/npm/highlightjs"></script>
 <script src="https://cdn.jsdelivr.net/npm/highlightjs-raku"></script>
 <script>
-  hljs.registerLanguage("raku", window.hljsDefineVue);
+  hljs.registerLanguage("raku", window.hljsDefineRaku);
   hljs.initHighlightingOnLoad();
 </script>
 ```
@@ -31,7 +31,7 @@ If you're using webpack / rollup / browserify / node:
 var hljs = require("highlightjs");
 var hljsDefineVue = require("highlightjs-raku");
 
-hljsDefineVue(hljs);
+hljsDefineRaku(hljs);
 hljs.initHighlightingOnLoad();
 ```
 # LICENSE
