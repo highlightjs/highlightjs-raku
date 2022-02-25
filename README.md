@@ -22,7 +22,7 @@ If you're not using a build system and just want to embed this in your webpage:
 <script src="https://cdn.jsdelivr.net/npm/highlightjs-raku"></script>
 <script>
   hljs.registerLanguage("raku", window.hljsDefineRaku);
-  hljs.initHighlightingOnLoad();
+  hljs.highlightAll();
 </script>
 ```
 If you're using webpack / rollup / browserify / node:
@@ -32,7 +32,7 @@ var hljs = require("highlightjs");
 var hljsDefineVue = require("highlightjs-raku");
 
 hljsDefineRaku(hljs);
-hljs.initHighlightingOnLoad();
+hljs.highlightAll();
 ```
 # LICENSE
 This software is provided under Artistic 2.0, the same license as [Raku license](https://raku.org/LICENSE)
