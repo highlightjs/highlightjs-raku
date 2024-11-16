@@ -16,7 +16,7 @@ export default function(hljs) {
 
   return {
     name: 'RakuRegexe',
-    aliases: ['rakuregexe','Perl 6', 'p6', 'pm6', 'rakumod'],
+    aliases: ['rakuregexe'],
     keywords: RAKUREGEX_KEYWORDS,
     contains: RAKUREGEX_DEFAULT_CONTAINS
   };
