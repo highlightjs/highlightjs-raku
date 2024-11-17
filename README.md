@@ -8,6 +8,8 @@
 [Contributing](#contributing)
 
 ----
+The development of this module has stalled at the testing stage due to other projects taking priority and ***it does not yet work***. Help is needed. Please contact *finanalyst*.
+
 This is the language definition fileset to describe [Raku](https://raku.org) for `highlight.js`.
 
 It is composed of four language definition files, one for the main language, and one each for the braids, namely `Pod`, `Quoting`, and `Regex`.
