@@ -122,7 +122,7 @@ export default function(hljs) {
 
   return {
     name: 'Raku',
-    aliases: ['raku','Perl6', 'p6', 'pm6', 'rakumod'],
+    aliases: ['raku','perl6', 'p6', 'pm6', 'rakumod'],
     case_insensistive: false,
     disableAutodetect: true,
     keywords: RAKU_KEYWORDS,
