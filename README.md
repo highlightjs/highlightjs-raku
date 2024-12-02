@@ -37,7 +37,8 @@ hljsDefineRaku(hljs);
 hljs.highlightAll();
 ```
 # LICENSE
-This software is provided under Artistic 2.0, the same license as [Raku license](https://raku.org/LICENSE)
+
+This software is provided under Artistic 2.0, the same license as [Raku license](https://github.com/rakudo/rakudo/blob/main/LICENSE)
 
 # Credits
 The language definition fileset was initiated by Richard Hainsworth, aka finanalyst.
