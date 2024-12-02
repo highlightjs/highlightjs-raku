@@ -17,7 +17,7 @@ export default function(hljs) {
 
   return {
     name: 'RakuDoc',
-    aliases: ['pod6','POD6', 'rakudoc'],
+    aliases: ['pod6', 'rakudoc'],
     keywords: RAKUDOC_KEYWORDS,
     contains: RAKUDOC_DEFAULT_CONTAINS
   };
